@@ -1,0 +1,21 @@
+01-create json object for qurstion  
+02 - start creating html markup
+03 - add dummy data
+04 - create the styling
+05 - fetch number of question from json object
+06 - show quesions count + questions category
+07 - show the number of bullets depend on quesions count
+08 - set the number for the right anf wrong answers 
+09- create the countdown timer
+10- fech the questions from the json object
+11 - show the first quesion
+12 - check answer and hide quesion then shoe next one
+12 - if the time end mark the quesion as wrong and show next quesion 
+14 - add class on bullet after answering the quesion 
+15 - if quesion finished show the result
+
+
+ideas ---
+- many json objects and choose language
+- add many quesions and choose only 10 randomly
+- randomize answers ()
