@@ -1,7 +1,13 @@
+
+done______
+
 01-create json object for qurstion  
 02 - start creating html markup
 03 - add dummy data
 04 - create the styling
+
+In progress
+
 05 - fetch number of question from json object
 06 - show quesions count + questions category
 07 - show the number of bullets depend on quesions count

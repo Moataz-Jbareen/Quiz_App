@@ -1,15 +1,16 @@
 
-//first line
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Quiz App</title>
 </head>
 <body>
 
-    <div class="auiz-app">
+    <div class="quiz-app">
         <section class="quiz-info">
            <div class="category"><span>HTML</span></div>
            <div class="count">Quesions Count <span>10</span></div>
@@ -17,30 +18,30 @@
         <section class="quiz-area">
             <h2>Why We Use &lt;br&gt; Element</h2>
         </section>
-        <section class="anser-area">
-            <div class="ansewr">
-                <input type="radio" id="ans_1" name="questions">
+        <section class="answers-area">
+            <div class="answer">
+                <input type="radio" id="ans_1" name="questions" checked>
                 <label for="ans_1">To Make Text Bold</label>
             </div>
-            <div class="ansewr">
+            <div class="answer">
                 <input type="radio" id="ans_2" name="questions">
                 <label for="ans_2">To Make Text Italic</label>
             </div>
-            <div class="ansewr">
+            <div class="answer">
                 <input type="radio" id="ans_3" name="questions">
                 <label for="ans_3">To Add Breakline</label>
             </div>
-            <div class="ansewr">
+            <div class="answer">
                 <input type="radio" id="ans_4" name="questions">
                 <label for="ans_4">To Create Horizontal Line</label>
             </div>
         </section>
         <button class="button-answer">Sumbit Answer</button>
         <section class="result-area"></section>
-    </div>
+    
     <div class="bullets">
         <div class="spans">
-            <span></span>
+            <span class="on"></span>
             <span></span>
             <span></span>
             <span></span>
@@ -53,7 +54,10 @@
         <div class="countdown">
             <span class="minutes">02</span> : <span class="seconds">45</span>
         </div>
-        <div class="results"></div>
     </div>
+    <div class="results">
+        <span class="perfect">Perfect</span>You Answerd 10 From 10
+    </div>
+</div>
 </body>
 </html>
