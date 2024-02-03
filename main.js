@@ -4,6 +4,8 @@ let bulletsspancontainer=document.querySelector(".bullets .spans");
 let quizArea= document.querySelector(".quiz-area");
 let answersArea= document.querySelector(".answers-area");
 let sunbitButton =document.querySelector(".button-answer")
+let bullets=document.querySelector(".bullets");
+let results=document.querySelector(".results");
 
 
 // Set Options
@@ -46,6 +48,9 @@ function getQuesions(){
 
                 handleBullets();
 
+                // show Results
+                showResults(quesionscount);
+
 
             }
 
@@ -79,7 +84,8 @@ function createBullets(num){
 
 function addQuesionsData(obj,count){
 
-    //Create Quesion Title "h2"
+if(currentIndex < count)
+   { //Create Quesion Title "h2"
     let quesionsTitle = document.createElement("h2");
     
 
@@ -147,7 +153,7 @@ function addQuesionsData(obj,count){
         //Append all divs to the answers area
 
         answersArea.appendChild(mainDiv);
-
+}
     }
   
 }
@@ -165,7 +171,8 @@ function checkAnswer(rAnswer,count) {
         }
     }
 
-    console.log(theChoosenAnswer);
+    // 
+    
 
     if(theChoosenAnswer===rAnswer){
         rightanswers++;
@@ -186,3 +193,37 @@ function handleBullets(){
         }
     
     });}
+
+
+    function showResults(count){
+
+        let theResults;
+        if(currentIndex==count){
+
+        quizArea.remove();
+        answersArea.remove();
+        sunbitButton.remove();
+        bullets.remove();
+
+
+        if(rightanswers > (count /2) && rightanswers < count){
+            theResults=`<span class="good">Good</span> The result is:  ${rightanswers} From ${count}.`;
+        }
+        else if(rightanswers===count){
+            theResults=`<span class="perfect">Perfect</span>The result is:  ${rightanswers} From ${count}.`;
+        }
+        else{
+            theResults=`<span class="bad">Bad</span> The result is: ${rightanswers} From ${count}.`;
+        }
+
+        results.innerHTML=theResults;
+        results.style.padding='10px';
+        results.style.margin='10px';
+        results.style.backgroundColor='white';
+        
+
+        }
+
+    
+    }
+
