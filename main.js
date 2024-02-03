@@ -4,10 +4,13 @@ let bulletsspancontainer=document.querySelector(".bullets .spans");
 let quizArea= document.querySelector(".quiz-area");
 
 let answersArea= document.querySelector(".answers-area");
+let sunbitButton =document.querySelector(".button-answer")
+
 
 // Set Options
 
 let currentIndex=0;
+let rightanswers=0;
 
 
 
@@ -21,6 +24,21 @@ function getQuesions(){
             createBullets(quesionscount);
             //Add Qoesions Data
             addQuesionsData(myJsonObject[currentIndex],quesionscount);
+
+            // click on sumbit
+
+            sunbitButton.onclick = () =>{
+                // Get right answer
+                let right_answer=myJsonObject[currentIndex].right_answer;
+                
+                //increase Index
+                currentIndex++;
+
+                //check The answer 
+                checkAnswer(right_answer,quesionscount);
+
+            }
+
         }
     }
     myRequest.open("GET", "html_quesions.json", true);
@@ -81,7 +99,7 @@ function addQuesionsData(obj,count){
         
         let radioInput = document.createElement("input");
         //Add type + Name +  ID + Data-Attribute
-        radioInput.name='quesion';
+        radioInput.name='question';
         radioInput.type="radio";
         radioInput.id=`answer_${i}`;
         radioInput.dataset.answer= obj[`answer_${i}`];
@@ -125,3 +143,24 @@ function addQuesionsData(obj,count){
 }
 
 
+
+function checkAnswer(rAnswer,count) {
+
+    let answers =document.getElementsByName('question');
+    let theChoosenAnswer;
+
+    for (let i=0; i<answers.length; i++){
+        if(answers[i].checked){
+            theChoosenAnswer=answers[i].dataset.answer;
+        }
+    }
+
+    console.log(theChoosenAnswer);
+
+    if(theChoosenAnswer===rAnswer){
+        rightanswers++;
+        console.log("Good Answer");
+        console.log(rightanswers)
+    }
+
+}
