@@ -1,8 +1,13 @@
 //Select Elements From the html file
 let countSpan= document.querySelector(".quiz-info .count span"); // Adding the number of the quesions
-let bulletsspancontainer=document.querySelector(".bullets .spans")
+let bulletsspancontainer=document.querySelector(".bullets .spans");
+let quizArea= document.querySelector(".quiz-area");
 
+let answersArea= document.querySelector(".answers-area");
 
+// Set Options
+
+let currentIndex=0;
 
 
 
@@ -12,7 +17,10 @@ function getQuesions(){
         if(this.readyState === 4 && this.status === 200){
            
             let myJsonObject=JSON.parse(this.responseText);
-            createBullets(myJsonObject.length);
+            let quesionscount=myJsonObject.length
+            createBullets(quesionscount);
+            //Add Qoesions Data
+            addQuesionsData(myJsonObject[currentIndex],quesionscount);
         }
     }
     myRequest.open("GET", "html_quesions.json", true);
@@ -35,9 +43,85 @@ function createBullets(num){
             theBullet.className = "on";
 
         }
-
         // Append Bullets to main bullet container
         bulletsspancontainer.appendChild(theBullet);
 
     }
 }
+
+function addQuesionsData(obj,count){
+
+    //Create Quesion Title "h2"
+    let quesionsTitle = document.createElement("h2");
+    
+
+    //Create Quesion Text
+
+    let quesionText = document.createTextNode(obj.title);
+
+    //Append Text To Heading
+    quesionsTitle.appendChild(quesionText);
+
+    // Append the h2 to the quiz area
+
+    quizArea.appendChild(quesionsTitle);
+
+    // create the asnwers
+
+    for(let i=1;i<=4;i++)
+    {
+        //creat Main Answer div{
+        let mainDiv= document.createElement("div");
+
+        //Add Class to main div
+
+        mainDiv.className = "answer";
+
+        // create Radio Input
+        
+        let radioInput = document.createElement("input");
+        //Add type + Name +  ID + Data-Attribute
+        radioInput.name='quesion';
+        radioInput.type="radio";
+        radioInput.id=`answer_${i}`;
+        radioInput.dataset.answer= obj[`answer_${i}`];
+
+        // Make First Option Selected
+        if(i===1)
+        {
+            radioInput.checked=true;
+
+        }
+
+        // Create Label
+
+        let theLabel = document.createElement("label");
+
+        //add For Attribute
+
+        theLabel.htmlFor=`answer_${i}`;
+
+
+        //create Label Text
+
+        let theLabelText = document.createTextNode(obj[`answer_${i}`]);
+
+        // Add the text to the label
+
+        theLabel.appendChild(theLabelText);
+
+
+        // Add Input + Label to main div
+
+        mainDiv.appendChild(radioInput);
+        mainDiv.appendChild(theLabel);
+
+        //Append all divs to the answers area
+
+        answersArea.appendChild(mainDiv);
+
+    }
+  
+}
+
+
