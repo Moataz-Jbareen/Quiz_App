@@ -2,7 +2,6 @@
 let countSpan= document.querySelector(".quiz-info .count span"); // Adding the number of the quesions
 let bulletsspancontainer=document.querySelector(".bullets .spans");
 let quizArea= document.querySelector(".quiz-area");
-
 let answersArea= document.querySelector(".answers-area");
 let sunbitButton =document.querySelector(".button-answer")
 
@@ -36,6 +35,17 @@ function getQuesions(){
 
                 //check The answer 
                 checkAnswer(right_answer,quesionscount);
+
+                //REmove Previos Quesions
+                quizArea.innerHTML="";
+                answersArea.innerHTML="";
+                //add the next question
+                addQuesionsData(myJsonObject[currentIndex],quesionscount);
+
+                // Handle Bukkets Class
+
+                handleBullets();
+
 
             }
 
@@ -159,8 +169,20 @@ function checkAnswer(rAnswer,count) {
 
     if(theChoosenAnswer===rAnswer){
         rightanswers++;
-        console.log("Good Answer");
-        console.log(rightanswers)
+     
     }
 
 }
+
+
+function handleBullets(){
+    let bspans=document.querySelectorAll(".bullets .spans span")
+
+    let arrayOfSpans=Array.from(bspans);
+    arrayOfSpans.forEach((span,index)=>{
+
+        if(currentIndex==index){
+            span.className="on";
+        }
+    
+    });}
