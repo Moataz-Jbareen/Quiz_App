@@ -6,12 +6,14 @@ let answersArea= document.querySelector(".answers-area");
 let sunbitButton =document.querySelector(".button-answer")
 let bullets=document.querySelector(".bullets");
 let results=document.querySelector(".results");
+let countdownElement=document.querySelector(".countdown");
 
 
 // Set Options
 
 let currentIndex=0;
 let rightanswers=0;
+let countdownInterval;
 
 
 
@@ -26,6 +28,8 @@ function getQuesions(){
             //Add Qoesions Data
             addQuesionsData(myJsonObject[currentIndex],quesionscount);
 
+            //Count down elemen
+            countdown(5, quesionscount);
             // click on sumbit
 
             sunbitButton.onclick = () =>{
@@ -43,6 +47,10 @@ function getQuesions(){
                 answersArea.innerHTML="";
                 //add the next question
                 addQuesionsData(myJsonObject[currentIndex],quesionscount);
+
+                //Count down elemen
+                clearInterval(countdownInterval)
+                countdown(5, quesionscount);
 
                 // Handle Bukkets Class
 
@@ -220,10 +228,32 @@ function handleBullets(){
         results.style.padding='10px';
         results.style.margin='10px';
         results.style.backgroundColor='white';
-        
+
 
         }
 
     
     }
+
+
+    function countdown(duration , count){
+        if(currentIndex < count){
+            let minutes , seconds;
+            countdownInterval=setInterval(function(){
+
+                minutes=parseInt(duration / 60);
+                seconds=parseInt(duration % 60);
+
+                minutes= minutes <10 ? `0${minutes}` : minutes;
+                seconds= seconds <10 ? `0${seconds}` : seconds;
+                countdownElement.innerHTML=`<span>${minutes}</span>:<span>${seconds}</span>`;
+
+                if(--duration <0){
+                    clearInterval(countdownInterval);
+                    sunbitButton.click();
+                }
+            },1000);
+
+        }
+}
 
